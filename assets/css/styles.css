@@ -1,0 +1,44 @@
+body {
+	background-color: black;
+	color: white;
+	font-family:'Mystery Quest', cursive;
+}
+
+#setButs {
+	margin-top: 20px;
+}
+
+button {
+	margin: 5px 10px;
+	border: 2px solid #cc0000;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+label {
+	margin: 5px 10px;
+	font-size: 1.5em;
+}
+
+#filmInput {
+	margin: 0 15px;
+}
+
+#addFilm {
+	margin: 5px 10px;
+	border: 2px solid white;
+	color: white;
+	background-color: #830303;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+#timbFilms {
+	margin: 20px;
+}
+
+.displayDiv {
+	margin: 20px;
+	padding: 0 15px;
+	display: inline-block;
+}
