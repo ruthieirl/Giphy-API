@@ -18,7 +18,7 @@ The user will find a screen with buttons and a search bar. When a button is clic
 
 This particular page is Tim Burton themed.  All of the buttons are Tim Burton Movie Titles.
 
-A screen shot of the game can be seen below:
+A screen shot of the page can be seen below:
 
 ![Imgur](https://i.imgur.com/T4ExrxI.png)
 
