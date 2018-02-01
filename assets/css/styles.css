@@ -1,44 +1,39 @@
 body {
-	background-color: black;
-	color: white;
-	font-family:'Mystery Quest', cursive;
+  color: #fff;
+  background: #000;
+  font-family:'Mystery Quest', cursive;
+  font-size: 18px;
 }
 
-#setButs {
-	margin-top: 20px;
+.movie-item {
+  float: left;
+  padding: 10px;
 }
 
-button {
-	margin: 5px 10px;
-	border: 2px solid #cc0000;
-	padding: 5px 10px;
-	font-weight: bold;
+input[type="text"] {
+  height: 30px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-label {
-	margin: 5px 10px;
-	font-size: 1.5em;
+button,
+input[type="submit"] {
+  font-family:'Mystery Quest', cursive;
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 18px;
+  color: #000;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #cc0000;
+  border-radius: 5px;
 }
 
-#filmInput {
-	margin: 0 15px;
+button:hover,
+input[type="submit"]:hover {
+  background: pink;
 }
 
-#addFilm {
-	margin: 5px 10px;
-	border: 2px solid white;
-	color: white;
-	background-color: #830303;
-	padding: 5px 10px;
-	font-weight: bold;
-}
-
-#timbFilms {
-	margin: 20px;
-}
-
-.displayDiv {
-	margin: 20px;
-	padding: 0 15px;
-	display: inline-block;
+button.active {
+  background: pink;
 }

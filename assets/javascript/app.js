@@ -1,70 +1,86 @@
-var tbFilms = ["Abraham Lincoln: Vampire Hunter", "Alice in Wonderand", "Batman", "Beetlejuice", "Big Fish", "Charlie and the Chocolate Factory", "The Corpse Bride", "Dark Shadows", "Edward Scissorhands", "Frankenweenie", "Mars Attacks", "The Nightmare Before Christmas", "Sleepy Hollow", "Sweeney Todd", "9", "Mrs. Peregrine's Home for Peculiar Children"]
+$(document).ready(function() {
 
-function renderButtons() {
-	
-	$("#setButs").empty();
-	
-	for (var i = 0; i < tbFilms.length; i++) {
-		
-		var button = $("<button>");
-		
-		button.text(tbFilms[i]);
-		
-		$("#setButs").append(button);
-	} 
-}
+  var titles = ["Abraham Lincoln: Vampire Hunter", "Alice in Wonderand", "Batman", "Beetlejuice", "Big Fish", "Charlie and the Chocolate Factory", "The Corpse Bride", "Dark Shadows", "Edward Scissorhands", "Frankenweenie", "Mars Attacks", "The Nightmare Before Christmas", "Sleepy Hollow", "Sweeney Todd", "9", "Mrs. Peregrine's Home for Peculiar Children"];
 
-	$("#addFilm").on("click", function(event) {
+  // function to make buttons and add to page
+  function populateButtons(arrayToUse, classToAdd, areaToAddTo) {
+    $(areaToAddTo).empty();
 
-        event.preventDefault();
+    for (var i = 0; i < arrayToUse.length; i++) {
+      var a = $("<button>");
+      a.addClass(classToAdd);
+      a.attr("data-type", arrayToUse[i]);
+      a.text(arrayToUse[i]);
+      $(areaToAddTo).append(a);
+    }
 
-        var film = $("#filmInput").val().trim();
-       
-        tbFilms.push(film);
+  }
 
-        $("#filmInput").val("");
+  $(document).on("click", ".movie-button", function() {
+    $("#movies").empty();
+    $(".movie-button").removeClass("active");
+    $(this).addClass("active");
 
-        renderButtons();
-      });
+    var type = $(this).attr("data-type");
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-      renderButtons();
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+    .done(function(response) {
+      var results = response.data;
 
-      $("button").on("click", function() {
-      
-      var filmName = $(this).text();
-      
-      console.log(filmName);
-      
-      var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=291492d0455c4054a8fdfc81c2dad351&q=" +
-        filmName + "&limit=10&offset=0&rating=G&lang=en";
+      for (var i = 0; i < results.length; i++) {
+        var movieDiv = $("<div class=\"movie-item\">");
 
-      $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
-        
-        .done(function(response) {
-          
-          console.log(queryURL);
+        var rating = results[i].rating;
 
-          console.log(response);
-          
-          var results = response.data;
+        var p = $("<p>").text("Rating: " + rating);
 
-          for (var i = 0; i < results.length; i++) {
+        var animated = results[i].images.fixed_height.url;
+        var still = results[i].images.fixed_height_still.url;
 
-            var filmDiv = $("<div class='displayDiv'>");
+        var movieImage = $("<img>");
+        movieImage.attr("src", still);
+        movieImage.attr("data-still", still);
+        movieImage.attr("data-animate", animated);
+        movieImage.attr("data-state", "still");
+        movieImage.addClass("movie-image");
 
-            var p = $("<p>").text("Rating: " + results[i].rating);
+        movieDiv.append(p);
+        movieDiv.append(movieImage);
 
-            var filmImage = $("<img>");
-            
-            filmImage.attr("src", results[i].images.fixed_height.url);
-
-            filmDiv.append(p);
-            filmDiv.append(filmImage);
-
-            $("#timbFilms").prepend(filmDiv);
-          }
-        });
+        $("#movies").append(movieDiv);
+      }
     });
+  });
+
+  $(document).on("click", ".movie-image", function() {
+
+    var state = $(this).attr("data-state");
+
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    }
+    else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
+
+  $("#add-movie").on("click", function(event) {
+    event.preventDefault();
+    var newMovie = $("input").eq(0).val();
+
+    if (newMovie.length > 2) {
+      titles.push(newMovie);
+    }
+
+    populateButtons(titles, "movie-button", "#movie-buttons");
+
+  });
+
+  populateButtons(titles, "movie-button", "#movie-buttons");
+});

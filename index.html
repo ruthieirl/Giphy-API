@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	
-	<meta charset="UTF-8">
-	<title>Giphy API</title>
-	
-	<!--linking Bootstrap styles-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+  <meta charset="UTF-8">
+  
+  <title>Tim Burton Giphy Attack</title>
+  
+  <!-- Linking Bootstrap V4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+  
+  <!-- Linking StyleSheet -->
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 
-	<link href="https://fonts.googleapis.com/css?family=Mystery+Quest" rel="stylesheet">
-	
-	<!--linking external stylesheet, my styles-->
-	<link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
-
+  <!-- Linking Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Mystery+Quest" rel="stylesheet">
 </head>
+
 <body>
-	
-	<!--Create a holder for the buttons to appear.-->
-	<div id="setButs" class="col-md-12"></div>
 
-	<div class="col-md-12 text-center">
-	<!--Create a form with text area and button to add more giphs-->
-		<form id="filmForm">
-			
-			<label for="filmInput">Add a Tim Burton Film Title</label>
-			
-			<input type="text" id="filmInput">
-			
-			<input id="addFilm" type="submit" value="Submit">
-		
-		</form>
-	
-	</div>
+  <div id="movie-buttons" class="text-center"></div>
 
-	<!--Create an area for the giphs-->
-	<div id="timbFilms" class="col-md-12"></div>
+  <form id="movie-form" class="text-center">
+    <label for="movie-input">Add a Tim Burton Movie Title</label>
+    <input type="text" id="movie-input">
+    <input id="add-movie" type="submit" value="Submit">
+  </form>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script><!--jQuery script source-->
-	<script src="assets/javascript/app.js"></script><!--my javascript and jQuery-->
+  <div id="movies"></div>
+
+  <!-- Start Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
+  <!-- End Scripts -->
+
 </body>
+
 </html>
